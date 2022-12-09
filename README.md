@@ -1,5 +1,6 @@
 # FounderDigest
-a Rails 7 boilerplate template by [@ryanckulp](https://twitter.com/ryanckulp), created to ship SaaS apps quickly. Learn how to use this at [24 Hour MVP](https://founderhacker.com/24-hour-mvp).
+a give and get newsletter swap for founders seeking to learn from other founders
+Learn how to use this at [24 Hour MVP](https://founderhacker.com/24-hour-mvp).
 
 features:
 * user authentication via [Devise](https://github.com/plataformatec/devise)
@@ -24,43 +25,18 @@ features:
 
 ## Installation
 1. clone the repo
-2. `cd speedrail && bundle` (installs dependencies)
-3. `rails g rename:into new_app_name` (then `cd ../new_app_name` to refresh)
-4. remove `gem 'rename'` from Gemfile, then `bin/setup` to create DB
-5. `bundle exec figaro install`
-6. `cp config/application-sample.yml config/application.yml` (put ENV vars here)
+2. `cd founder_digest && bin/setup` (installs dependencies)
+3. `cp config/application-sample.yml config/application.yml`
+4. get `config/application.yml` real values from repo admin
 
 ## Development
 ```sh
 bin/dev # uses foreman to boot server, frontend, and bg job queue
 ```
 
-**troubleshooting**
-`Turbo Drive` lazy-loads pages following form submission, causing script tags at the bottom of following views to not always load.
-
-```html
-<!-- add data-turbo=false to form submission buttons if the following view needs a full render -->
-<button data-turbo="false" type="submit" ...>Submit</button>
-```
 
 ## Testing
 ```
 bundle exec rspec # run all tests inside spec/
 bundle exec rspec spec/dir_name # run all tests inside given directory
 ```
-
-## Deploying
-```sh
-figaro heroku:set -e production # you only need to do this once
-heroku git:remote -a heroku_app_name_here # you only need to do this once
-```
-
-```sh
-git push heroku master # deploys master branch
-git push heroku some_branch_name:master # deploys non-master branch
-```
-
-**note**: Heroku must have 2 'dynos' enabled, `web` + `worker`, to process background jobs. if you don't need a queue, simply remove the `worker` task from `Procfile` and don't invoke `.delayed` functions.
-
-## Miscellaneous
-to use Postmark for emails, set `postmark_api_token` inside `application.yml`, then [verify your sending domain](https://account.postmarkapp.com/signature_domains/initialize_verification).
