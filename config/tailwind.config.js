@@ -16,7 +16,8 @@ module.exports = {
         'primary-hover': {
           '700': '#217B38',
           '500': '#217B38'
-        }
+        },
+        'accent': '#56E3EE',
       }
     },
   },
